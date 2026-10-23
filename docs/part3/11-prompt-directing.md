@@ -26,6 +26,13 @@
 
 ## 핵심 개념
 
+<details markdown="1">
+<summary>📱 원자료 도구(Prompt Continuity Lab) 화면 전체 보기</summary>
+
+![원자료 도구 Prompt Continuity Lab의 모바일 화면 전체](../assets/ch11/prompt-lab-mobile.jpg)
+
+</details>
+
 ### 1) 3-STAGE 학습 흐름 — 이것만 이해하면 됩니다
 
 ```mermaid
@@ -206,6 +213,8 @@ Negative: no lyrics or vocals, no exaggerated sound effects, no on-screen text.
 
 ## 스토리보드 예시 1 — 백석대학교 후마니타스 홍보영상 (예시)
 
+![원자료 스토리보드: 백석대학교 후마니타스 홍보영상 — 10개 컷마다 장면, 카메라, 프롬프트를 정리한 표](../assets/ch11/storyboard-humanitas.jpg)
+
 원자료의 스토리보드를 바탕으로 흐름을 재구성한 **예시**입니다. 컷 구성과 문구는 수업용으로 단순화했습니다.
 
 | 컷 | 장면 | 화면 내용 | 카메라 |
@@ -224,6 +233,8 @@ Negative: no lyrics or vocals, no exaggerated sound effects, no on-screen text.
 > 💡 **팁** 원자료 스토리보드는 컷마다 **장면 / 카메라 / Prompt** 칸을 두고, 아래에 **AI 영상 생성 프롬프트(종합)** 와 **핵심 스타일 키워드**를 따로 정리했습니다. 이 구조를 그대로 따라 하면 컷별 생성과 전체 톤 관리가 쉬워집니다.
 
 ## 스토리보드 예시 2 — 특수체육 배드민턴 수업 (예시)
+
+![원자료 스토리보드: 특수체육 배드민턴 수업 — 8개 숏과 카메라 연결 흐름, 공통 촬영 설정](../assets/ch11/storyboard-badminton.jpg)
 
 주제 문구: **"모든 움직임은 가능성입니다 — 함께하는 스포츠, 더 넓은 세상으로"**
 

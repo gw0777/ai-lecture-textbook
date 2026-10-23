@@ -94,7 +94,7 @@ ai-lecture-textbook/
     ├── finale/                ← 20. FINAL MISSION
     ├── appendix/              ← 부록 A~F
     ├── examples/              ← 바로 실행해 보는 예제 (HTML · JS)
-    ├── assets/                ← 이미지
+    ├── assets/chNN/           ← 장별 이미지 (슬라이드·스토리보드)
     └── stylesheets/extra.css  ← 한국어 읽기 편한 글자 간격
 ```
 
@@ -179,7 +179,8 @@ git push -u origin main
 
 | 할 일 | 방법 |
 |---|---|
-| 노션의 슬라이드·스토리보드 이미지 넣기 | 노션에서 이미지를 내려받아 `docs/assets/` 에 넣고, 해당 장에 `![설명](../assets/파일이름.png)` 로 연결 |
+| ~~노션의 슬라이드·스토리보드 이미지 넣기~~ ✅ | 완료 (2026.10.23). PDF 슬라이드 29장은 페이지별 JPEG로 뽑아 [02장](../part1/02-structural-leverage.md)·[10장](../part3/10-irreplaceable-creator.md)에, AI CEO 슬라이드 7장은 [16장](../part4/16-ai-ceo.md)에, 스토리보드는 [11장](../part3/11-prompt-directing.md)·[12장](../part3/12-motion-graphics.md)에 넣었습니다. 증명서·알림톡·참가자 프로필 화면, 실명이 보이는 소개 영상 장면은 **개인정보 때문에 넣지 않았습니다** |
+| 새 이미지 추가 | `docs/assets/chNN/` 에 넣고, 해당 장에 `![무엇을 보여 주는 그림인지](../assets/chNN/파일이름.jpg)` 로 연결. 사진은 가로 1,400px 안팎의 JPEG로 줄이면 사이트가 빨라집니다 |
 | 쇼릴·피치 영상 연결 | GitHub에는 100MB 넘는 파일을 올릴 수 없으므로 YouTube(일부 공개) 등에 올리고 링크로 연결 |
 | PDF 키노트 원본 공유 | 저장소 **Releases** 에 첨부하거나 학교 LMS에 올리고 링크로 연결 |
 | 라이선스 정하기 | 교재를 다른 사람이 어디까지 쓸 수 있는지 정해 `LICENSE` 파일로 추가 (예: 비영리 공유 허용 여부) |
