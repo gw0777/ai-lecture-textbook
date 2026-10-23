@@ -79,9 +79,13 @@ flowchart LR
 
 ```text
 ai-lecture-textbook/
+├── 00_시작_메뉴.bat           ← 더블클릭 실행 파일 (Windows). 00 메뉴에서 모든 기능을 고름
+├── 01_교재_미리보기.bat ~ 04_GitHub에_올리기.bat
 ├── README.md                  ← 저장소 첫 화면 (표지 + 목차)
 ├── CONTRIBUTING.md            ← 함께 만들기 안내 + 집필 규칙
 ├── mkdocs.yml                 ← 교재 사이트 설정과 목차(nav)
+├── mkdocs.offline.yml         ← 오프라인 교재(파일 더블클릭용) 설정
+├── scripts/                   ← textbook.ps1(실행 파일의 화면·동작), collect_prompts.py(부록 B 생성)
 ├── requirements.txt           ← 사이트 생성 도구 목록 (mkdocs-material)
 ├── .github/
 │   ├── workflows/deploy.yml   ← main에 올리면 사이트 자동 게시
@@ -139,7 +143,10 @@ flowchart LR
 4. 공개 범위를 고릅니다. 학생 모두가 보게 하려면 **Public**, 수강생만 보게 하려면 **Private** (Private은 GitHub Pages 사용 조건이 계정 요금제에 따라 다릅니다).
 5. "Add a README file" 은 **체크하지 않고** **Create repository** 를 누릅니다. (README는 이미 교재에 있습니다)
 
-### 6-2. 파일 올리기 — 둘 중 하나를 고르세요
+### 6-2. 파일 올리기 — 셋 중 하나를 고르세요
+
+**방법 0. 더블클릭 (Windows, git 설치 필요)** — 교재 폴더의 `04_GitHub에_올리기.bat` 을 더블클릭하고 질문에 답합니다.
+처음에는 이름·이메일과 저장소 주소를 묻고, 그다음부터는 "무엇을 고쳤는지" 한 줄만 적으면 올라갑니다. 올리기 직전에 Y/N으로 한 번 더 확인합니다.
 
 **방법 A. 명령어 (git이 설치된 컴퓨터)** — 교재 폴더에서 실행합니다.
 

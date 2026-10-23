@@ -1,5 +1,8 @@
 # Windows·Mac 어디서 고쳐도 줄바꿈을 LF로 통일합니다
 * text=auto eol=lf
+# Windows 실행 파일은 CRLF여야 cmd·PowerShell이 제대로 읽습니다
+*.bat text eol=crlf
+*.ps1 text eol=crlf
 *.png binary
 *.jpg binary
 *.pdf binary

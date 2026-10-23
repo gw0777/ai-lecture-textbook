@@ -1,5 +1,7 @@
 # MkDocs 빌드 결과물 (GitHub Actions가 매번 새로 만듭니다)
 site/
+# 02_오프라인_교재_만들기.bat 결과물 (나눠 주는 용도, 저장소에는 올리지 않음)
+site-offline/
 
 # Python
 __pycache__/

@@ -1,0 +1,9 @@
+# 인터넷·설치 없이 index.html 더블클릭으로 열리는 교재를 만드는 설정입니다.
+# 02_오프라인_교재_만들기.bat 가 사용하며, 결과는 바탕화면의 '손으로배우는AI_오프라인교재' 폴더에 만듭니다.
+# 나머지 설정은 mkdocs.yml 을 그대로 따릅니다.
+INHERIT: mkdocs.yml
+site_dir: site-offline
+use_directory_urls: false
+plugins:
+  - search
+  - offline

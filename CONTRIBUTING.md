@@ -31,6 +31,9 @@ GitHub를 처음 쓰는 분도 아래 순서만 따라 하면 됩니다.
 
 ## 3. 내 컴퓨터에서 미리 보기 (선택)
 
+Windows에서는 교재 폴더의 **`01_교재_미리보기.bat`** 을 더블클릭하면 끝입니다. (처음 한 번 도구를 자동 설치합니다)
+Mac이나 명령어가 편한 분은 아래처럼 실행합니다.
+
 ```bash
 pip install -r requirements.txt
 mkdocs serve
@@ -108,3 +111,5 @@ mkdocs serve
 | `docs/assets/` | 이미지 |
 | `mkdocs.yml` | 교재 사이트 목차(nav). **새 장을 추가하면 여기에도 한 줄 추가** |
 | `scripts/collect_prompts.py` | 부록 B(프롬프트 모음)를 다시 만드는 스크립트. 장을 고친 뒤 `python scripts/collect_prompts.py` |
+| `00`~`04_*.bat`, `scripts/textbook.ps1` | 더블클릭 실행 파일. `.bat` 은 영문만 쓴 짧은 실행기이고, 한글 화면과 동작은 모두 `textbook.ps1`(UTF-8 BOM 저장)에 있습니다 |
+| `mkdocs.offline.yml` | 오프라인 교재(파일 더블클릭으로 열리는 교재) 설정 |

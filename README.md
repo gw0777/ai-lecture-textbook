@@ -69,6 +69,21 @@ flowchart LR
 | `nvidia-build-chat.mjs` | NVIDIA Build API 호출 예제 (Node.js) | 15장 |
 | `cafe-ceo/CLAUDE.md` | AI CEO 실습용 메모리 파일 예시 | 16장 |
 
+## 바로 실행하기 (Windows: 더블클릭)
+
+교재 폴더에서 아래 파일을 **더블클릭**하면 됩니다. 처음 한 번은 필요한 도구를 자동으로 설치합니다 (1~3분, Python 필요).
+
+| 파일 | 하는 일 |
+|---|---|
+| `00_시작_메뉴.bat` | **모든 기능을 한 화면에서** 고릅니다. 이것 하나만 기억하세요 |
+| `01_교재_미리보기.bat` | 내 컴퓨터에서 교재 사이트를 엽니다. 원고(.md)를 고쳐 저장하면 바로 반영됩니다 |
+| `02_오프라인_교재_만들기.bat` | 바탕화면에 `손으로배우는AI_오프라인교재` 폴더를 만듭니다. USB·압축으로 나눠 주면 받은 사람은 `index.html` 더블클릭으로 봅니다 |
+| `03_수업도구_열기.bat` | 입구 쇼크 해부도 · Prompt Continuity Lab · 모션그래픽 템플릿을 브라우저로 엽니다 (설치·인터넷 불필요) |
+| `04_GitHub에_올리기.bat` | 저장소 연결 → 수정 내용 기록 → GitHub에 올리기를 질문에 답하며 진행합니다 |
+
+> 💡 Python이 없다면 [python.org](https://www.python.org/downloads/)에서 설치하세요. 설치 첫 화면의 **"Add python.exe to PATH"** 를 꼭 체크합니다.
+> 실행 파일의 화면과 동작은 모두 `scripts/textbook.ps1` 한 파일에 들어 있습니다. Mac에서는 아래 명령어로 같은 일을 할 수 있습니다.
+
 ## 교재 사이트로 보기
 
 이 저장소는 [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)로 **검색되는 교재 웹사이트**를 만듭니다.
