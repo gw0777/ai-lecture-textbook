@@ -1,0 +1,5 @@
+# Windows·Mac 어디서 고쳐도 줄바꿈을 LF로 통일합니다
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary

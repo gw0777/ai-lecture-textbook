@@ -1,0 +1,4 @@
+# 2026.10 확인: mkdocs 1.6.1 + mkdocs-material 9.7.7 로 빌드됩니다.
+# MkDocs 2.0은 플러그인·테마 구조가 바뀌어 이 교재 설정이 작동하지 않으므로 1.x 로 고정합니다.
+mkdocs>=1.6,<2
+mkdocs-material>=9.7,<10

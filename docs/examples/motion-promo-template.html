@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모션 홍보영상 템플릿</title>
+<style>
+  /* ===== 색상: 여기 값만 바꾸면 영상 전체 색이 바뀝니다 ===== */
+  :root {
+    --bg: #0b1a33;        /* 영상 배경(진한 색) */
+    --bg2: #1a3566;       /* 영상 배경(밝은 쪽) */
+    --ink: #f5f1e8;       /* 영상 글자색 */
+    --muted: #b3bdd0;     /* 영상 보조 글자색 */
+    --accent: #e6b85c;    /* 강조색 */
+    --line: rgba(245, 241, 232, 0.2);
+
+    --ui-bg: #eef0f4;     /* 조작 화면 배경 */
+    --ui-panel: #ffffff;
+    --ui-ink: #1d2433;
+    --ui-muted: #5b6475;
+    --ui-line: #d5d9e0;
+    --ui-accent: #2f4fb3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ui-bg: #0f1218;
+      --ui-panel: #181c25;
+      --ui-ink: #e8ebf1;
+      --ui-muted: #9aa3b5;
+      --ui-line: #2b3240;
+      --ui-accent: #8fa8ff;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh;
+    background: var(--ui-bg);
+    color: var(--ui-ink);
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  /* ===== 영상 무대 (1080×1920을 화면 크기에 맞춰 축소) ===== */
+  .viewport {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    background: var(--bg);
+    flex: none;
+  }
+  .stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1080px;
+    height: 1920px;
+    transform-origin: 0 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: radial-gradient(120% 75% at 15% 0%, var(--bg2), var(--bg) 62%);
+  }
+  .orb {
+    position: absolute;
+    left: 78%;
+    top: 26%;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    border: 3px solid var(--line);
+    box-shadow: inset 0 0 0 60px rgba(230, 184, 92, 0.06);
+  }
+  .orb::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .grid {
+    position: absolute;
+    inset: -200px 0 0 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 160px;
+    opacity: 0.35;
+  }
+  .brandbar {
+    position: absolute;
+    left: 110px;
+    right: 110px;
+    top: 90px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 34px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .scene {
+    position: absolute;
+    inset: 0;
+    padding: 220px 110px 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 44px;
+    visibility: hidden;
+  }
+  .kicker { font-size: 40px; letter-spacing: 0.22em; color: var(--accent); font-weight: 700; }
+  .title { display: flex; flex-direction: column; gap: 6px; }
+  .line { font-size: 128px; line-height: 1.12; font-weight: 800; word-break: keep-all; }
+  .accent { color: var(--accent); }
+  .big { font-size: 260px; line-height: 1; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+  .sub { font-size: 48px; line-height: 1.5; color: var(--muted); white-space: pre-line; word-break: keep-all; }
+  .items { display: flex; flex-direction: column; gap: 26px; }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 62px;
+    font-weight: 700;
+    padding: 30px 40px;
+    border: 2px solid var(--line);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .item .num { color: var(--accent); font-size: 44px; font-weight: 800; }
+  .progress {
+    position: absolute;
+    left: 110px;
+    right: 110px;
+    bottom: 120px;
+    display: flex;
+    gap: 14px;
+  }
+  .seg { flex: 1; height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+  .seg i { display: block; height: 100%; width: 0; background: var(--accent); }
+
+  /* ===== 조작 패널 ===== */
+  .panel {
+    width: min(720px, 100%);
+    background: var(--ui-panel);
+    border: 1px solid var(--ui-line);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  button, select {
+    font: inherit;
+    font-size: 14px;
+    color: var(--ui-ink);
+    background: var(--ui-bg);
+    border: 1px solid var(--ui-line);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  button:hover, select:hover { border-color: var(--ui-accent); }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: 2px; }
+  button.primary { background: var(--ui-accent); border-color: var(--ui-accent); color: #fff; }
+  .time { font-variant-numeric: tabular-nums; font-size: 14px; color: var(--ui-muted); margin-left: auto; }
+  input[type="range"] { width: 100%; accent-color: var(--ui-accent); }
+  .scenes button { font-size: 12px; }
+  .scenes button.active { border-color: var(--ui-accent); color: var(--ui-accent); font-weight: 700; }
+  .notes { width: min(720px, 100%); font-size: 13px; line-height: 1.6; color: var(--ui-muted); }
+  .notes b { color: var(--ui-ink); }
+
+  /* ===== 녹화 모드: 조작 패널을 숨기고 영상만 크게 ===== */
+  body.record { background: #000; padding: 0; justify-content: center; height: 100vh; }
+  body.record .panel, body.record .notes { display: none; }
+  body.record .viewport { border-radius: 0; box-shadow: none; }
+  .toast {
+    position: fixed;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="viewport" id="viewport">
+  <div class="stage" id="stage">
+    <div class="grid" id="grid"></div>
+    <div class="orb" id="orb"></div>
+    <div class="brandbar"><span id="brandLeft"></span><span id="brandRight"></span></div>
+    <div id="scenes"></div>
+    <div class="progress" id="progress"></div>
+  </div>
+</div>
+
+<div class="panel" role="group" aria-label="재생 조작">
+  <div class="row">
+    <button class="primary" id="playBtn" type="button">Ⅱ 일시정지</button>
+    <button id="restartBtn" type="button">↻ 처음부터</button>
+    <select id="speedSel" aria-label="재생 속도">
+      <option value="0.5">0.5×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.5">1.5×</option>
+      <option value="2">2×</option>
+    </select>
+    <button id="recordBtn" type="button" title="조작 패널을 숨기고 처음부터 재생합니다. Esc로 나갑니다.">🎥 녹화 모드</button>
+    <span class="time" id="timeLabel">00:00 / 00:24</span>
+  </div>
+  <input type="range" id="seek" min="0" max="24000" step="10" value="0" aria-label="재생 위치">
+  <div class="row scenes" id="sceneBtns" aria-label="장면별 바로가기"></div>
+</div>
+
+<div class="notes">
+  <b>사용법</b> · Space 재생/일시정지 · ←/→ 1초 이동 · 🎥 녹화 모드에서는 Esc로 나갑니다.<br>
+  <b>고치는 곳</b> · 이 파일을 메모장이나 VS Code로 열고, 아래쪽 &lt;script&gt;의 <b>「✏️ 여기만 고치세요」</b> 부분만 바꾸세요.<br>
+  <b>게시 전 확인</b> · 날짜·시간·장소·기관명·직함은 반드시 공식 공고와 대조한 뒤 배포하세요.
+</div>
+
+<div class="toast" id="toast">녹화 모드 · 1초 뒤 처음부터 재생 · Esc로 나가기</div>
+
+<script>
+// =====================================================================
+// ✏️ 여기만 고치세요
+// ---------------------------------------------------------------------
+// BRAND_LEFT / BRAND_RIGHT : 영상 맨 위 왼쪽·오른쪽에 계속 보이는 작은 글자
+// SCENE_SECONDS            : 장면 하나의 길이(초). 6장면 × 4초 = 24초
+// SCENES                   : 장면 목록. 순서대로 재생됩니다.
+//   label  : 조작 패널의 장면 버튼 이름 (영상에는 안 나옴)
+//   kicker : 제목 위의 작은 글자
+//   title  : 큰 제목. 줄을 바꾸려면 \n 을 넣으세요
+//   accent : 제목 안에서 강조색으로 칠할 글자 (없으면 "")
+//   big    : (선택) 아주 큰 숫자·단어. 예: "18:30"
+//   items  : (선택) 01·02·03 번호가 붙는 목록
+//   sub    : 제목 아래 설명 글 (없으면 "")
+// [여기에 ...] 라고 적힌 곳을 내 내용으로 바꾸면 됩니다.
+// =====================================================================
+const BRAND_LEFT = "[여기에 기관명]";
+const BRAND_RIGHT = "2027";
+const SCENE_SECONDS = 4;
+
+const SCENES = [
+  {
+    label: "오프닝",
+    kicker: "[여기에 과정명]",
+    title: "우리 과정\n원우 모집",
+    accent: "원우 모집",
+    sub: "[여기에 과정 한 줄 소개]"
+  },
+  {
+    label: "핵심 메시지",
+    kicker: "WHY",
+    title: "리더는\n배움을\n멈추지 않는다",
+    accent: "배움",
+    sub: "[여기에 이 과정이 필요한 이유 한 문장]"
+  },
+  {
+    label: "배우는 것",
+    kicker: "WHAT WE LEARN",
+    title: "함께 배우는\n세 가지",
+    accent: "세 가지",
+    items: ["[여기에 주제 1]", "[여기에 주제 2]", "[여기에 주제 3]"],
+    sub: ""
+  },
+  {
+    label: "일정",
+    kicker: "WHEN",
+    big: "18:30",
+    title: "매주 [요일]",
+    accent: "",
+    sub: "[여기에 장소] · [여기에 시작일]"
+  },
+  {
+    label: "연결",
+    kicker: "PEOPLE",
+    title: "배움이\n연결이 되고\n실행이 되는 곳",
+    accent: "실행",
+    sub: "[여기에 네트워크·성과 한 줄]"
+  },
+  {
+    label: "모집 안내",
+    kicker: "JOIN US",
+    title: "지금\n문의하세요",
+    accent: "문의",
+    sub: "[여기에 연락처 또는 홈페이지]"
+  }
+];
+// ===================== ✏️ 고치는 곳 끝 =====================
+
+
+// 아래는 재생 장치입니다. 처음에는 고치지 않아도 됩니다.
+const ENTER_SEC = 0.6;   // 글자가 나타나는 데 걸리는 시간
+const EXIT_SEC = 0.35;   // 장면이 끝날 때 사라지는 시간
+const DURATION = SCENES.length * SCENE_SECONDS;
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const MOTION = REDUCED ? 0 : 1;
+
+const $ = (id) => document.getElementById(id);
+const stage = $("stage");
+const viewport = $("viewport");
+const orb = $("orb");
+const grid = $("grid");
+const playBtn = $("playBtn");
+const seek = $("seek");
+const timeLabel = $("timeLabel");
+const speedSel = $("speedSel");
+const toast = $("toast");
+
+let time = 0;
+let playing = true;
+let speed = 1;
+let lastNow = null;
+
+function clamp(v, min, max) {
+  return Math.min(max, Math.max(min, v));
+}
+function easeOut(p) {
+  return 1 - Math.pow(1 - p, 3);
+}
+function fmt(sec) {
+  const s = Math.floor(sec);
+  return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+}
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+// 제목 한 줄을 만들면서 accent 글자만 강조색으로 감쌉니다.
+function buildLine(text, accent) {
+  const line = el("div", "line");
+  const at = accent ? text.indexOf(accent) : -1;
+  if (at < 0) {
+    line.textContent = text;
+    return line;
+  }
+  line.append(text.slice(0, at), el("span", "accent", accent), text.slice(at + accent.length));
+  return line;
+}
+
+// ----- 장면 화면 만들기 -----
+$("brandLeft").textContent = BRAND_LEFT;
+$("brandRight").textContent = BRAND_RIGHT;
+
+const sceneEls = SCENES.map((s) => {
+  const box = el("section", "scene");
+  let at = 0.15;
+  const add = (node, gap) => {
+    node.dataset.in = at.toFixed(2);
+    box.appendChild(node);
+    at += gap;
+  };
+  if (s.kicker) add(el("div", "kicker", s.kicker), 0.2);
+  if (s.big) add(el("div", "big", s.big), 0.25);
+  const title = el("div", "title");
+  box.appendChild(title);
+  String(s.title || "").split("\n").forEach((t) => {
+    const line = buildLine(t, s.accent);
+    line.dataset.in = at.toFixed(2);
+    title.appendChild(line);
+    at += 0.22;
+  });
+  if (s.items && s.items.length) {
+    const list = el("div", "items");
+    box.appendChild(list);
+    s.items.forEach((t, i) => {
+      const item = el("div", "item");
+      item.append(el("span", "num", String(i + 1).padStart(2, "0")), el("span", "", t));
+      item.dataset.in = (at + 0.1).toFixed(2);
+      list.appendChild(item);
+      at += 0.3;
+    });
+  }
+  if (s.sub) add(el("div", "sub", s.sub), 0);
+  $("scenes").appendChild(box);
+  return box;
+});
+
+const segFills = SCENES.map(() => {
+  const seg = el("div", "seg");
+  const fill = el("i");
+  seg.appendChild(fill);
+  $("progress").appendChild(seg);
+  return fill;
+});
+
+const sceneBtns = SCENES.map((s, i) => {
+  const b = el("button", "", fmt(i * SCENE_SECONDS) + " " + s.label);
+  b.type = "button";
+  b.addEventListener("click", () => jump(i * SCENE_SECONDS + 0.001));
+  $("sceneBtns").appendChild(b);
+  return b;
+});
+
+seek.max = String(DURATION * 1000);
+
+// ----- 한 순간(time초)의 화면 그리기 -----
+function render(t) {
+  const idx = Math.min(SCENES.length - 1, Math.floor(t / SCENE_SECONDS));
+  sceneEls.forEach((box, i) => {
+    const on = i === idx;
+    box.style.visibility = on ? "visible" : "hidden";
+    if (!on) return;
+    const local = t - i * SCENE_SECONDS;
+    const isLast = i === SCENES.length - 1;
+    const exit = isLast ? 0 : clamp((local - (SCENE_SECONDS - EXIT_SEC)) / EXIT_SEC, 0, 1);
+    box.querySelectorAll("[data-in]").forEach((node) => {
+      const p = easeOut(clamp((local - Number(node.dataset.in)) / ENTER_SEC, 0, 1));
+      const dy = ((1 - p) * 70 - exit * 40) * MOTION;
+      node.style.opacity = String(p * (1 - exit));
+      node.style.transform = "translateY(" + dy.toFixed(1) + "px)";
+    });
+  });
+
+  orb.style.transform =
+    "translate(-50%, -50%) rotate(" + (t * 15 * MOTION).toFixed(2) + "deg) scale(" +
+    (1 + 0.05 * Math.sin(t * 0.8) * MOTION).toFixed(3) + ")";
+  grid.style.transform = "translateY(" + ((t * 40 * MOTION) % 160).toFixed(1) + "px)";
+
+  segFills.forEach((f, i) => {
+    f.style.width = clamp((t - i * SCENE_SECONDS) / SCENE_SECONDS, 0, 1) * 100 + "%";
+  });
+
+  seek.value = String(Math.round(t * 1000));
+  timeLabel.textContent = fmt(t) + " / " + fmt(DURATION);
+  sceneBtns.forEach((b, i) => b.classList.toggle("active", i === idx));
+}
+
+// ----- 재생 조작 -----
+function setPlaying(v) {
+  if (v && time >= DURATION) time = 0;
+  playing = v;
+  playBtn.textContent = v ? "Ⅱ 일시정지" : "▶ 재생";
+}
+function jump(t) {
+  time = clamp(t, 0, DURATION);
+  render(time);
+}
+
+function tick(now) {
+  if (lastNow === null) lastNow = now;
+  const dt = (now - lastNow) / 1000;
+  lastNow = now;
+  if (playing) {
+    time += dt * speed;
+    if (time >= DURATION) {
+      time = DURATION;
+      setPlaying(false);
+    }
+  }
+  render(time);
+  requestAnimationFrame(tick);
+}
+
+playBtn.addEventListener("click", () => setPlaying(!playing));
+$("restartBtn").addEventListener("click", () => {
+  jump(0);
+  setPlaying(true);
+});
+speedSel.addEventListener("change", () => {
+  speed = Number(speedSel.value);
+});
+seek.addEventListener("input", () => jump(Number(seek.value) / 1000));
+
+$("recordBtn").addEventListener("click", () => {
+  document.body.classList.add("record");
+  fit();
+  jump(0);
+  setPlaying(false);
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 900);
+  setTimeout(() => setPlaying(true), 1000);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.body.classList.contains("record")) {
+    document.body.classList.remove("record");
+    fit();
+    return;
+  }
+  const tag = e.target && e.target.tagName;
+  if (e.key === " " && tag !== "SELECT" && tag !== "INPUT") {
+    e.preventDefault();
+    setPlaying(!playing);
+  } else if (e.key === "ArrowRight" && tag !== "INPUT") {
+    e.preventDefault();
+    jump(time + 1);
+  } else if (e.key === "ArrowLeft" && tag !== "INPUT") {
+    e.preventDefault();
+    jump(time - 1);
+  }
+});
+
+// ----- 창 크기에 맞춰 1080×1920 무대를 축소 -----
+function fit() {
+  const rec = document.body.classList.contains("record");
+  const panelH = rec ? 0 : document.querySelector(".panel").offsetHeight + document.querySelector(".notes").offsetHeight + 72;
+  const availW = window.innerWidth - (rec ? 0 : 32);
+  const availH = window.innerHeight - panelH;
+  const s = Math.max(0.16, Math.min(availW / 1080, availH / 1920));
+  viewport.style.width = 1080 * s + "px";
+  viewport.style.height = 1920 * s + "px";
+  stage.style.transform = "scale(" + s + ")";
+}
+window.addEventListener("resize", fit);
+
+fit();
+render(0);
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

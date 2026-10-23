@@ -1,0 +1,21 @@
+/* 한국어 본문 가독성: 줄 간격과 단어 단위 줄바꿈 */
+.md-typeset {
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 프롬프트 상자를 조금 더 눈에 띄게 */
+.md-typeset pre > code {
+  white-space: pre-wrap;
+}
+
+/* 표 머리글 강조 */
+.md-typeset table:not([class]) th {
+  background-color: var(--md-accent-fg-color--transparent);
+}
+
+/* 체크리스트 간격 */
+.md-typeset .task-list-item {
+  margin-bottom: 0.25em;
+}

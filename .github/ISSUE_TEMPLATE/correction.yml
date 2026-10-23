@@ -1,0 +1,35 @@
+name: 🛠 오류·수정 제안
+description: 깨진 링크, 바뀐 화면, 틀린 내용, 따라 하다 막힌 곳을 알려주세요.
+title: "[수정] "
+labels: ["수정 제안"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: 어느 장인가요?
+      placeholder: "예: 08. Flow 영상 — 따라 해 보기 3번"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 어떤 문제인가요?
+      options:
+        - 링크가 열리지 않아요
+        - 실제 화면이 교재와 달라요
+        - 내용이 틀렸어요
+        - 설명이 어려워서 따라 하기 힘들어요
+        - 기타
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: 자세히 적어 주세요
+      description: 가능하면 확인한 날짜와 화면 캡처를 함께 붙여 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 이렇게 고치면 좋겠어요 (선택)

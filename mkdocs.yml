@@ -1,0 +1,120 @@
+site_name: 손으로 배우는 AI
+site_description: 인공지능 특강 교재 (대학·CEO 과정) — 직접 눌러보고, 만들고, 내 일에 적용하는 AI 입문서
+docs_dir: docs
+# GitHub에 올린 뒤 아래 두 줄을 내 저장소 주소로 바꾸세요.
+# site_url: https://<GitHub-아이디>.github.io/ai-lecture-textbook/
+# repo_url: https://github.com/<GitHub-아이디>/ai-lecture-textbook
+
+theme:
+  name: material
+  language: ko
+  font:
+    text: Noto Sans KR
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: 어두운 화면으로
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: 밝은 화면으로
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
+
+# 깨진 내부 링크·앵커가 있으면 사이트 만들기를 멈춥니다 (GitHub Actions에서 --strict)
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# 목차(nav)에는 없지만 예제로 함께 게시하는 문서
+not_in_nav: |
+  /examples/**
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+      # 한글 제목도 GitHub와 같은 모양의 앵커(#5-교재를-계속-키우는-방법)가 되도록
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.emoji
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - 시작하기:
+      - index.md
+      - 교재 사용법: how-to-use.md
+  - 1부 AI 시대를 읽다:
+      - part1/index.md
+      - 01. 입구 쇼크: part1/01-entry-shock.md
+      - 02. 구조적 레버리지: part1/02-structural-leverage.md
+  - 2부 Google AI 실험실:
+      - part2/index.md
+      - 03. 준비하기: part2/03-getting-started.md
+      - 04. Gemini: part2/04-gemini.md
+      - 05. AI 리서치: part2/05-ai-research.md
+      - 06. Gemini Notebook: part2/06-notebooklm.md
+      - 07. AI 이미지: part2/07-ai-image.md
+      - 08. Flow 영상: part2/08-flow-video.md
+      - 09. AI 도구 상자: part2/09-ai-toolbox.md
+  - 3부 나만의 것을 만들다:
+      - part3/index.md
+      - 10. 대체 불가능한 창작자: part3/10-irreplaceable-creator.md
+      - 11. 프롬프트 연출: part3/11-prompt-directing.md
+      - 12. 코드로 만드는 모션그래픽: part3/12-motion-graphics.md
+      - 13. 자료 실사화: part3/13-field-to-page.md
+  - 4부 내 일에 적용하다:
+      - part4/index.md
+      - 14. AI 도입 자기점검: part4/14-ai-self-check.md
+      - 15. NVIDIA Build 모델 비교: part4/15-nvidia-build.md
+      - 16. AI CEO 만들기: part4/16-ai-ceo.md
+      - 17. 크롬 한방 자동화: part4/17-chrome-bookmarklet.md
+  - 5부 현장과 리더십:
+      - part5/index.md
+      - 18. 모두의 창업 사례: part5/18-startup-case.md
+      - 19. 건강리더십과 조직운영: part5/19-health-leadership.md
+  - 마무리:
+      - 20. FINAL MISSION: finale/20-final-mission.md
+  - 부록:
+      - A. 바로가기 링크: appendix/a-links.md
+      - B. 프롬프트 모음: appendix/b-prompts.md
+      - C. 용어 사전: appendix/c-glossary.md
+      - D. 워크시트: appendix/d-worksheets.md
+      - E. 강사용 운영안: appendix/e-instructor-guide.md
+      - F. 교재 제작 과정: appendix/f-making-of.md

@@ -1,0 +1,51 @@
+name: 💡 활용 사례 공유
+description: 내 전공·업무에 AI를 써 본 경험(FINAL MISSION 결과 포함)을 나눠 주세요.
+title: "[사례] "
+labels: ["활용 사례"]
+body:
+  - type: input
+    id: field
+    attributes:
+      label: 나의 전공 / 업종
+      placeholder: "예: 특수체육교육 3학년 / 동네 카페 운영"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결하고 싶었던 문제
+    validations:
+      required: true
+  - type: input
+    id: ai
+    attributes:
+      label: 사용한 AI
+      placeholder: "예: Gemini, Gemini Notebook, Flow"
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: 입력한 프롬프트
+      render: text
+  - type: textarea
+    id: result
+    attributes:
+      label: 만들어진 결과 (링크·캡처 첨부 가능)
+  - type: textarea
+    id: improve
+    attributes:
+      label: 다시 개선한다면?
+  - type: input
+    id: chapter
+    attributes:
+      label: 관련된 교재 장 (선택)
+      placeholder: "예: 20장 FINAL MISSION"
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 확인
+      options:
+        - label: 개인정보와 공개하면 안 되는 회사 정보를 지우거나 바꿨습니다.
+          required: true
+        - label: 이 사례가 교재에 (이름 없이) 실려도 괜찮습니다.

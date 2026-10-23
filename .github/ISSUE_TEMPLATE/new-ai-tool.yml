@@ -1,0 +1,56 @@
+name: 🔥 새로운 AI 제보
+description: 좋은 AI 도구나 기존 AI의 새 기능을 발견했다면 알려주세요. 다음 학생의 학습자료가 됩니다.
+title: "[새 AI] "
+labels: ["새로운 AI"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **THIS WEEK'S NEW AI** — 여러분의 발견이 교재의 다음 업데이트가 됩니다.
+        어려운 말 없이, 써 본 그대로 적어 주세요.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 어떤 소식인가요?
+      options:
+        - NEW — 새로운 AI 도구
+        - UPDATE — 기존 AI의 새로운 기능
+        - MISSION — 새로운 실습 아이디어
+        - PROMPT — 바로 쓸 수 있는 프롬프트
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: 도구 이름과 주소
+      placeholder: "예: Google Opal — https://opal.google/"
+    validations:
+      required: true
+  - type: textarea
+    id: used-for
+    attributes:
+      label: 무엇에 사용했나요?
+      placeholder: "예: 우리 카페 주간 메뉴 안내문을 자동으로 만드는 미니 앱을 만들었습니다."
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: 입력한 프롬프트 (있다면)
+      render: text
+  - type: textarea
+    id: result
+    attributes:
+      label: 어떤 결과가 나왔나요? 좋았던 점과 아쉬운 점
+  - type: input
+    id: cost
+    attributes:
+      label: 무료 여부와 확인한 날짜
+      placeholder: "예: 무료 (2026.10.20 확인), 하루 생성 횟수 제한 있음"
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 확인
+      options:
+        - label: 개인정보(이름·연락처·학생/고객 정보)를 넣지 않았습니다.
+          required: true

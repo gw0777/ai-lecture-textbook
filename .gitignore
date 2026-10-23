@@ -1,0 +1,15 @@
+# MkDocs 빌드 결과물 (GitHub Actions가 매번 새로 만듭니다)
+site/
+
+# Python
+__pycache__/
+.venv/
+venv/
+
+# 비밀 값 — API 키는 절대 저장소에 올리지 않습니다
+.env
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
