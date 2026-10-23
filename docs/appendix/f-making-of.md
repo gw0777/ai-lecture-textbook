@@ -53,7 +53,7 @@ flowchart LR
 
 | 노션 원자료 | 교재 위치 | 다시 배치한 이유 |
 |---|---|---|
-| 첨부 「입구 쇼크 해부도.html」 | [01. 입구 쇼크](../part1/01-entry-shock.md) | "왜 지금 AI를 배워야 하는가"에 대한 가장 직접적인 답이라 맨 앞에 둠 |
+| 첨부 「입구 쇼크 해부도.html」 | [01. 입구 쇼크](../part1/01-entry-shock.md) + [예제 파일](../examples/entry-shock-anatomy.html) | "왜 지금 AI를 배워야 하는가"에 대한 가장 직접적인 답이라 맨 앞에 둠. 원본 HTML은 장에서 바로 열 수 있게 예제로 함께 실음 |
 | 첨부 「구조적_레버리지.pdf」 (키노트) | [02. 구조적 레버리지](../part1/02-structural-leverage.md) | 도구보다 먼저 '보는 눈'을 다룸 |
 | GOOGLE AI EXPERIENCE LAB — START HERE · STEP 01 | [03. 준비하기](../part2/03-getting-started.md) | |
 | 01. GEMINI | [04. Gemini](../part2/04-gemini.md) | |
@@ -63,7 +63,7 @@ flowchart LR
 | 05. GOOGLE FLOW | [08. Flow 영상](../part2/08-flow-video.md) | |
 | 06. GOOGLE AI TOOL BOX · 하위 「바로가기 - 링크 안내」 | [09. AI 도구 상자](../part2/09-ai-toolbox.md) | Quick Start 5개 / MORE AI 3개로 나눈 권고를 반영 |
 | 첨부 「대체 불가능한 창작자의 조건.pdf」 · 하위 「경험과 생각으로」 · 4단계 실행 가이드 이미지 | [10. 대체 불가능한 창작자](../part3/10-irreplaceable-creator.md) | 창작 실습에 들어가기 전의 마음가짐으로 3부 맨 앞에 둠 |
-| 하위 「자료 실사화」 — 프롬프트 연출 현장실습, 스토리보드 | [11. 프롬프트 연출](../part3/11-prompt-directing.md) | |
+| 하위 「자료 실사화」 — 프롬프트 연출 현장실습, 스토리보드 | [11. 프롬프트 연출](../part3/11-prompt-directing.md) + [예제 파일](../examples/prompt-continuity-lab.html) | 실습 도구 원본 HTML을 예제로 함께 실음 |
 | 본문 맨 위 '모션그래픽' · 후마니타스 HTML 2종 · 쇼릴 | [12. 코드로 만드는 모션그래픽](../part3/12-motion-graphics.md) | 노션에서는 최신 업데이트라 맨 위였지만, 기초 실습 뒤의 심화 단계로 이동 |
 | 하위 「자료 실사화」 — 현장 방문 계획 HTML | [13. 자료 실사화](../part3/13-field-to-page.md) | 개인 여행 정보는 빼고 '조사 → 검증된 페이지' 방법만 남김 |
 | 첨부 「AI도입_자기점검_보고서.docx」 | [14. AI 도입 자기점검](../part4/14-ai-self-check.md) | |
@@ -93,7 +93,7 @@ ai-lecture-textbook/
     ├── part1/ … part5/        ← 1~5부 (각 폴더의 index.md는 부 소개)
     ├── finale/                ← 20. FINAL MISSION
     ├── appendix/              ← 부록 A~F
-    ├── examples/              ← 바로 실행해 보는 예제 (HTML · JS)
+    ├── examples/              ← 바로 실행해 보는 예제·수업 도구 (HTML · JS)
     ├── assets/chNN/           ← 장별 이미지 (슬라이드·스토리보드)
     └── stylesheets/extra.css  ← 한국어 읽기 편한 글자 간격
 ```

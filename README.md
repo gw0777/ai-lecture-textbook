@@ -62,6 +62,8 @@ flowchart LR
 
 | 파일 | 내용 | 관련 장 |
 |---|---|---|
+| `entry-shock-anatomy.html` | 입구 쇼크 해부도 — 기업 판단 5단계, 업무 분해 실습, 비용 계산기 (원자료 수업 도구) | 1장 |
+| `prompt-continuity-lab.html` | Prompt Continuity Lab — 쉬운 말을 촬영·음악 전문 명령어로 바꾸는 오프라인 도구 (원자료 수업 도구) | 11장 |
 | `motion-promo-template.html` | 9:16 · 24초 모션그래픽 홍보영상 템플릿 (외부 라이브러리 없음) | 12장 |
 | `youtube-links-bookmarklet.js` / `.txt` | 유튜브 검색 결과 링크 한 번에 복사하는 북마클릿 | 17장 |
 | `nvidia-build-chat.mjs` | NVIDIA Build API 호출 예제 (Node.js) | 15장 |

@@ -1,0 +1,557 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>입구 쇼크 해부도</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;800&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 하나의 세로 통로(복도)를 따라 내려가며 '입구'가 좁아지는 과정을 단계별로 해부. 좌측 얇은 레일이 통로를 상징 */
+:root{
+  --bg:#f5f7fb;          /* 차가운 종이색 */
+  --surface:#ffffff;
+  --ink:#141a26;
+  --ink-2:#4a5468;
+  --line:#d7dce7;
+  --accent:#1f4fd8;      /* 기업·시스템의 색 */
+  --accent-soft:#e4ebff;
+  --warn:#c2410c;        /* 좁아지는 입구의 경고색 */
+  --warn-soft:#ffe9df;
+  --good:#0e7a5f;
+  --good-soft:#dff5ec;
+  --display:"Noto Serif KR",serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1420;--surface:#171e2d;--ink:#eef1f8;--ink-2:#aab3c7;--line:#2a3348;
+    --accent:#7d9cff;--accent-soft:#1d2a52;--warn:#ff9466;--warn-soft:#44241a;
+    --good:#4fd1a9;--good-soft:#0f3a30;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1420;--surface:#171e2d;--ink:#eef1f8;--ink-2:#aab3c7;--line:#2a3348;
+  --accent:#7d9cff;--accent-soft:#1d2a52;--warn:#ff9466;--warn-soft:#44241a;
+  --good:#4fd1a9;--good-soft:#0f3a30;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:900px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.3;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800}
+h3{font-size:1.1rem;font-weight:700;font-family:var(--body)}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.lead{font-size:1.1rem;color:var(--ink-2);max-width:62ch}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* nav */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0 calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:.85rem;padding:6px 12px;border-radius:999px;font-weight:500}
+nav.toc a.on,nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+
+/* hero */
+header.hero{padding-block:48px 24px;display:grid;gap:18px}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.hero-grid svg{width:100%;max-width:100%;height:auto}
+.def{border-left:4px solid var(--warn);padding:8px 16px;background:var(--surface);border-radius:0 8px 8px 0}
+.def b{font-family:var(--display)}
+
+section{padding-block:40px;border-top:1px solid var(--line);display:grid;gap:20px}
+.sec-head{display:grid;gap:6px}
+
+/* process stepper */
+.steps{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.step{display:grid;grid-template-columns:56px 1fr;border-top:1px solid var(--line)}
+.step:first-child{border-top:0}
+.step .no{font-family:var(--mono);font-weight:600;color:var(--accent);background:var(--accent-soft);display:grid;place-items:center;font-size:.9rem}
+.step button.head{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;width:100%;box-sizing:border-box}
+.step button.head:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.step .head h3{font-size:1.05rem}
+.step .head small{color:var(--ink-2);display:block;font-weight:400;font-size:.9rem}
+.step .chev{flex:none;transition:transform .2s;color:var(--ink-2)}
+.step.open .chev{transform:rotate(180deg)}
+.step .body{grid-column:2;padding:0 18px 20px;display:grid;gap:14px;min-width:0}
+.step .body[hidden]{display:none}
+.diagram{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.diagram svg{width:100%;height:auto;min-width:520px;display:block}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.kv div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.92rem}
+.kv div strong{display:block;font-size:.78rem;color:var(--ink-2);letter-spacing:.04em;margin-bottom:2px}
+.note{font-size:.88rem;color:var(--ink-2)}
+.tag{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:600;vertical-align:middle}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+.tag.g{background:var(--good-soft);color:var(--good)}
+
+/* task sorter */
+.sorter{display:grid;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;font-size:.9rem;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;min-height:120px}
+.verdict .meter{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.verdict .meter i{display:block;height:100%;background:var(--warn);width:0;transition:width .3s}
+.verdict dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:.92rem}
+.verdict dt{color:var(--ink-2)}
+.verdict dd{margin:0}
+
+/* cost sim */
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.sim .ctrls{display:grid;gap:14px;min-width:0}
+.sim label{display:grid;gap:4px;font-size:.9rem}
+.sim label span{display:flex;justify-content:space-between;color:var(--ink-2)}
+.sim label output{font-family:var(--mono);color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.sim input[type=range]{width:100%;accent-color:var(--accent)}
+.sim .grp{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--ink-2);margin-top:4px}
+.bars{display:grid;gap:14px;align-content:start;min-width:0}
+.bar{display:grid;gap:4px}
+.bar .lbl{display:flex;justify-content:space-between;font-size:.9rem}
+.bar .lbl b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.bar .trk{height:22px;background:var(--bg);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.bar .trk i{display:block;height:100%;transition:width .3s}
+.bar.h .trk i{background:var(--accent)}
+.bar.a .trk i{background:var(--good)}
+.bar .sub{font-size:.8rem;color:var(--ink-2)}
+.ratio{font-family:var(--display);font-size:1.4rem;padding:10px 14px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.ratio small{display:block;font-family:var(--body);font-size:.85rem;color:var(--ink-2);font-weight:400}
+
+/* scenarios */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface);gap:2px}
+.seg button{font:inherit;font-size:.9rem;padding:8px 16px;border-radius:999px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;font-weight:500}
+.seg button[aria-selected="true"]{background:var(--accent);color:#fff;font-weight:600}
+.scn{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.scn .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;min-width:0}
+.scn .card h3{display:flex;align-items:center;gap:8px}
+.scn ul{margin:0;padding-left:18px;font-size:.93rem;display:grid;gap:4px}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;text-align:left}
+.stat b{font-family:var(--mono);font-size:1.5rem;display:block;font-variant-numeric:tabular-nums}
+.stat span{font-size:.82rem;color:var(--ink-2)}
+
+/* prepare */
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:120px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;align-items:start}
+.rung .k{font-family:var(--mono);font-size:.78rem;color:var(--warn);font-weight:600;letter-spacing:.04em;padding-top:4px}
+.rung .k.g{color:var(--good)}
+.rung p{font-size:.93rem}
+
+/* discussion & glossary */
+ol.q{margin:0;padding-left:22px;display:grid;gap:10px}
+ol.q li::marker{font-family:var(--mono);color:var(--accent);font-weight:600}
+.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.gl div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:.92rem}
+.gl b{font-family:var(--display);display:block;margin-bottom:2px}
+.src{font-size:.85rem;color:var(--ink-2);display:grid;gap:6px}
+.src ul{margin:0;padding-left:18px;display:grid;gap:3px}
+
+@media (max-width:640px){
+  .hero-grid,.sim,.scn{grid-template-columns:1fr}
+  .stat{grid-template-columns:1fr}
+  .rung{grid-template-columns:1fr;gap:4px}
+  .step{grid-template-columns:44px 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<nav class="toc" aria-label="목차"><div class="wrap">
+  <a href="#intro">개념</a><a href="#process">기업의 판단 과정</a><a href="#tasks">업무 분해 실습</a><a href="#cost">비용 계산기</a><a href="#scenarios">두 갈래 기업</a><a href="#prepare">학생의 대응</a><a href="#discuss">토론</a><a href="#glossary">용어</a>
+</div></nav>
+
+<div class="wrap">
+<header class="hero" id="intro">
+  <p class="eyebrow">AI 시대 노동시장 · 수업 자료</p>
+  <div class="hero-grid">
+    <div style="display:grid;gap:16px">
+      <h1>입구 쇼크<br>기업은 신입을 어떻게 보는가</h1>
+      <p class="lead">같은 '신입 채용'이라는 문 앞에서, 기업이 내부적으로 어떤 계산을 거쳐 문을 좁히거나 모양을 바꾸는지 단계별로 따라가 봅니다.</p>
+      <div class="def"><b>입구 쇼크(Entry Shock)</b> — 생성형 AI가 조직 사다리의 맨 아랫칸, 즉 신입이 맡던 기초 업무를 흡수하면서 노동시장의 '입구'가 좁아지거나 그 모양이 바뀌는 현상. 경기 침체와 달리 회복되어도 예전 입구로 돌아오지 않는다는 점이 핵심입니다.</div>
+    </div>
+    <svg viewBox="0 0 360 300" role="img" aria-label="세 개의 출입구가 점점 좁아지고 마지막 문에는 AI 라벨이 붙은 개념도">
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>
+      <rect x="0" y="0" width="360" height="300" fill="var(--surface)" rx="12"/>
+      <text x="20" y="30" font-family="var(--mono)" font-size="11" fill="var(--ink-2)" letter-spacing="2">입구의 변화 (개념도)</text>
+      <!-- door 1 -->
+      <rect x="22" y="70" width="110" height="170" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+      <rect x="40" y="90" width="74" height="150" fill="var(--bg)" stroke="var(--line)"/>
+      <text x="77" y="262" text-anchor="middle" font-family="var(--body)" font-size="12" fill="var(--ink)" font-weight="700">공채 시대</text>
+      <text x="77" y="278" text-anchor="middle" font-family="var(--body)" font-size="10" fill="var(--ink-2)">기초 업무 = 수련 과정</text>
+      <!-- door 2 -->
+      <rect x="150" y="90" width="80" height="150" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+      <rect x="166" y="108" width="48" height="132" fill="var(--bg)" stroke="var(--line)"/>
+      <text x="190" y="262" text-anchor="middle" font-family="var(--body)" font-size="12" fill="var(--ink)" font-weight="700">수시 채용</text>
+      <text x="190" y="278" text-anchor="middle" font-family="var(--body)" font-size="10" fill="var(--ink-2)">경력 같은 신입</text>
+      <!-- door 3 -->
+      <rect x="250" y="110" width="88" height="130" rx="4" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="2"/>
+      <rect x="276" y="130" width="36" height="110" fill="var(--bg)" stroke="var(--line)"/>
+      <rect x="258" y="118" width="72" height="16" rx="3" fill="var(--warn)"/>
+      <text x="294" y="130" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="#fff" font-weight="600">AI 통과 필수</text>
+      <text x="294" y="262" text-anchor="middle" font-family="var(--body)" font-size="12" fill="var(--ink)" font-weight="700">입구 쇼크</text>
+      <text x="294" y="278" text-anchor="middle" font-family="var(--body)" font-size="10" fill="var(--ink-2)">AI를 부리는 신입</text>
+      <path d="M135 160 L148 160" stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <path d="M233 160 L248 160" stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#arr)"/>
+    </svg>
+  </div>
+  <p class="note">※ 위 그림은 문의 폭을 통계로 그린 것이 아니라 변화의 방향을 보여주는 개념도입니다. 수치 근거는 하단 출처를 참고하세요.</p>
+</header>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="sec-head">
+    <p class="eyebrow">01 · 기업 내부의 판단 과정</p>
+    <h2>신입 채용 공고 하나가 줄어들기까지, 회사 안에서는 다섯 번의 결정이 일어난다</h2>
+    <p class="lead">각 단계를 눌러 기업이 무엇을 보고, 어떤 계산을 하며, 그 결과 신입에게 무엇이 요구되는지 확인하세요.</p>
+  </div>
+  <div class="steps" id="steps">
+
+    <article class="step open">
+      <div class="no">1</div>
+      <button class="head" aria-expanded="true"><h3>업무 분해 <small>"신입이 하던 일을 하나씩 쪼개서 본다"</small></h3><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="body">
+        <p>기업은 '신입 한 명'을 통째로 보지 않습니다. 직무를 업무 단위(task)로 분해한 뒤, 각 업무가 <b>반복적인가 · 정형화됐는가 · 결과를 검증하기 쉬운가</b>를 따집니다. 세 조건을 모두 만족하는 업무가 AI에게 넘어갑니다.</p>
+        <div class="diagram"><svg viewBox="0 0 640 170" role="img" aria-label="신입 직무가 업무 단위로 분해되어 AI 처리 가능 업무와 사람 유지 업무로 나뉘는 흐름도">
+          <rect x="10" y="55" width="120" height="60" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+          <text x="70" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">신입 직무</text>
+          <text x="70" y="98" text-anchor="middle" font-size="11" fill="var(--ink-2)">예: 사무·기획 보조</text>
+          <g font-size="11" fill="var(--ink)">
+            <rect x="190" y="10" width="150" height="26" rx="5" fill="var(--surface)" stroke="var(--line)"/><text x="265" y="27" text-anchor="middle">회의록·보고서 초안</text>
+            <rect x="190" y="44" width="150" height="26" rx="5" fill="var(--surface)" stroke="var(--line)"/><text x="265" y="61" text-anchor="middle">데이터 정리·단순 분석</text>
+            <rect x="190" y="78" width="150" height="26" rx="5" fill="var(--surface)" stroke="var(--line)"/><text x="265" y="95" text-anchor="middle">자료 리서치·요약</text>
+            <rect x="190" y="112" width="150" height="26" rx="5" fill="var(--surface)" stroke="var(--line)"/><text x="265" y="129" text-anchor="middle">현장 관계자 응대</text>
+            <rect x="190" y="146" width="150" height="26" rx="5" fill="var(--surface)" stroke="var(--line)"/><text x="265" y="163" text-anchor="middle">판단이 필요한 예외 처리</text>
+          </g>
+          <path d="M130 85 L185 23 M130 85 L185 57 M130 85 L185 91 M130 85 L185 125 M130 85 L185 159" stroke="var(--line)" stroke-width="1.5" fill="none"/>
+          <rect x="420" y="20" width="200" height="60" rx="8" fill="var(--warn-soft)" stroke="var(--warn)"/>
+          <text x="520" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">AI가 흡수</text>
+          <text x="520" y="64" text-anchor="middle" font-size="11" fill="var(--ink-2)">반복 · 정형 · 검증 쉬움</text>
+          <rect x="420" y="100" width="200" height="60" rx="8" fill="var(--good-soft)" stroke="var(--good)"/>
+          <text x="520" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">사람이 유지</text>
+          <text x="520" y="144" text-anchor="middle" font-size="11" fill="var(--ink-2)">관계 · 판단 · 책임</text>
+          <path d="M340 23 L415 40 M340 57 L415 48 M340 91 L415 56" stroke="var(--warn)" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+          <path d="M340 125 L415 125 M340 159 L415 135" stroke="var(--good)" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+        </svg></div>
+        <div class="kv">
+          <div><strong>기업이 보는 것</strong>업무별 AI 대체 가능 비율</div>
+          <div><strong>신입에게 생기는 변화</strong>'배우면서 하던 일'이 사라져 학습 사다리의 첫 칸이 없어짐</div>
+          <div><strong>핵심 질문</strong>"이 업무의 결과를 누가, 어떻게 검증하는가?"</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="no">2</div>
+      <button class="head" aria-expanded="false"><h3>비용 비교 <small>"신입 1년 비용과 AI 1년 비용을 나란히 놓는다"</small></h3><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="body" hidden>
+        <p>신입의 비용은 급여만이 아닙니다. 온보딩 기간 동안의 낮은 생산성, 선배의 코칭 시간, 교육비가 더해집니다. 반면 AI 도구는 구독·사용량 과금으로 즉시 가동됩니다. 이 <b>비용 구조의 비대칭</b>이 기업이 '채용보다 도입'을 먼저 검토하게 만드는 경제적 유인입니다. (아래 비용 계산기에서 직접 조정해 볼 수 있습니다.)</p>
+        <div class="kv">
+          <div><strong>신입 측 비용 항목</strong>연봉 + 4대보험·복리후생 + 온보딩 손실 + 코칭 시간 + 이직 리스크</div>
+          <div><strong>AI 측 비용 항목</strong>구독료 + 토큰 사용량 + 검수·감독 인력 + 오류 리스크</div>
+          <div><strong>자주 빠뜨리는 항목</strong>AI 결과물을 검수할 사람의 시간 — 이것이 '사람 유지' 업무가 됨</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="no">3</div>
+      <button class="head" aria-expanded="false"><h3>인력 구조 재편 <small>"피라미드가 다이아몬드로 바뀐다"</small></h3><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="body" hidden>
+        <p>넓은 신입층이 받치던 피라미드 조직이, 중간층 중심의 다이아몬드 또는 소수 시니어가 AI를 부리는 납작한 구조로 바뀝니다. AI 네이티브 스타트업일수록 시니어 중심의 작고 평평한 팀을 선호한다는 연구 결과도 보고됐습니다.</p>
+        <div class="diagram"><svg viewBox="0 0 640 190" role="img" aria-label="피라미드형 조직이 다이아몬드형, 그리고 납작한 AI 활용 조직으로 변하는 비교도">
+          <g font-size="11" fill="var(--ink-2)" text-anchor="middle">
+            <text x="110" y="20" font-weight="700" fill="var(--ink)">과거: 피라미드</text>
+            <text x="320" y="20" font-weight="700" fill="var(--ink)">현재: 다이아몬드</text>
+            <text x="530" y="20" font-weight="700" fill="var(--ink)">AI 네이티브: 납작</text>
+          </g>
+          <!-- pyramid -->
+          <rect x="85" y="40" width="50" height="28" fill="var(--accent)" opacity=".9"/>
+          <rect x="60" y="72" width="100" height="28" fill="var(--accent)" opacity=".6"/>
+          <rect x="20" y="104" width="180" height="40" fill="var(--warn)" opacity=".55"/>
+          <text x="110" y="129" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">신입 (넓은 입구)</text>
+          <!-- diamond -->
+          <rect x="295" y="40" width="50" height="28" fill="var(--accent)" opacity=".9"/>
+          <rect x="245" y="72" width="150" height="36" fill="var(--accent)" opacity=".6"/>
+          <rect x="285" y="112" width="70" height="32" fill="var(--warn)" opacity=".55"/>
+          <text x="320" y="132" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">신입</text>
+          <!-- flat -->
+          <rect x="470" y="40" width="120" height="30" fill="var(--accent)" opacity=".9"/>
+          <text x="530" y="60" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">시니어 + AI 에이전트</text>
+          <rect x="500" y="76" width="60" height="22" rx="4" fill="var(--good-soft)" stroke="var(--good)"/>
+          <text x="530" y="91" text-anchor="middle" font-size="10" fill="var(--ink)">AI</text>
+          <rect x="505" y="112" width="50" height="24" fill="var(--warn)" opacity=".55"/>
+          <text x="530" y="128" text-anchor="middle" font-size="10" fill="var(--ink)" font-weight="700">소수 신입</text>
+          <text x="320" y="175" text-anchor="middle" font-size="11" fill="var(--ink-2)">주황 영역 = 신입이 들어올 수 있는 자리의 상대적 크기 (개념도)</text>
+        </svg></div>
+        <div class="kv">
+          <div><strong>기업의 논리</strong>관리 비용은 줄고, 숙련자 1인당 산출은 늘어남</div>
+          <div><strong>장기 부작용</strong>신입을 키우지 않으면 10년 뒤 시니어가 없음 — 기업도 인식하는 딜레마</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="no">4</div>
+      <button class="head" aria-expanded="false"><h3>채용 방식 변경 <small>"지원자 수보다 채용 성공 확률을 높인다"</small></h3><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="body" hidden>
+        <p>대규모 공채가 수시 채용으로 재편되고, 공고를 올려두되 실제 진행은 거의 하지 않는 <b>유령 공고</b>, 채용 이전 단계에서 검증을 강화하는 <b>AI 역량검사</b>가 늘어납니다. 채용 과정 자체가 '사람 대 사람' 평가에서 'AI 시스템을 통과하는 게임'처럼 바뀌고 있다는 지적이 나옵니다.</p>
+        <div class="diagram"><svg viewBox="0 0 640 120" role="img" aria-label="채용 깔때기: 공고, 서류 AI 필터, 역량검사, 면접, 입사로 갈수록 좁아지는 단계">
+          <g font-size="11" fill="var(--ink)" text-anchor="middle">
+            <rect x="10" y="20" width="150" height="80" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="85" y="52" font-weight="700">공고 게시</text><text x="85" y="70" fill="var(--ink-2)">일부는 유령 공고</text>
+            <rect x="170" y="30" width="130" height="60" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="235" y="55" font-weight="700">서류 AI 필터</text><text x="235" y="73" fill="var(--ink-2)">키워드·역량 자동 선별</text>
+            <rect x="310" y="38" width="120" height="44" fill="var(--warn-soft)" stroke="var(--warn)"/><text x="370" y="58" font-weight="700">AI 역량검사</text><text x="370" y="74" fill="var(--ink-2)">사전 검증 강화</text>
+            <rect x="440" y="44" width="100" height="32" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="490" y="64" font-weight="700">면접</text>
+            <rect x="550" y="50" width="80" height="20" fill="var(--good-soft)" stroke="var(--good)"/><text x="590" y="64" font-weight="700">입사</text>
+          </g>
+          <text x="320" y="113" text-anchor="middle" font-size="11" fill="var(--ink-2)">사람이 지원자를 처음 만나는 지점이 뒤로 밀린다</text>
+        </svg></div>
+        <div class="kv">
+          <div><strong>학생에게 보이는 현상</strong>지원해도 연락이 없다, 공고는 많은데 합격자는 적다</div>
+          <div><strong>기업 내부의 이유</strong>채용 예산을 검증 단계에 배분 — 잘못 뽑는 비용이 더 크다고 판단</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="no">5</div>
+      <button class="head" aria-expanded="false"><h3>'신입'의 정의 변경 <small>"같은 직무명, 전혀 다른 요구 역량"</small></h3><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="body" hidden>
+        <p>"신입 사상 최대 채용"이라는 뉴스가 나와도 안심하기 어렵습니다. 직무 이름은 그대로인데 요구 역량이 통째로 바뀐 경우가 많기 때문입니다. 받아쓰던 자리가 <b>AI를 부리는 자리</b>로 바뀌었고, 신입 공고에서 AI 활용 능력 요구는 최근 거의 두 배로 늘었습니다.</p>
+        <div class="kv">
+          <div><strong>이전의 이상형</strong>경력직 같은 신입 — 바로 투입 가능한 실무 경험</div>
+          <div><strong>지금의 이상형</strong>AI보다 저렴하고 효율적인 신입 / AI를 지휘해 결과를 내는 신입</div>
+          <div><strong>단, 반전</strong>고용주가 가장 중시하는 역량은 여전히 AI 활용 능력이 아니라 소통·문제해결 같은 기본기라는 조사도 있음</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== TASK SORTER ===== -->
+<section id="tasks">
+  <div class="sec-head">
+    <p class="eyebrow">02 · 실습 — 기업의 눈으로 업무 분해하기</p>
+    <h2>신입이 맡을 법한 업무를 고르면, 기업이 어떤 기준으로 판정하는지 보여줍니다</h2>
+    <p class="lead">정답을 외우는 활동이 아닙니다. 기업이 쓰는 세 가지 질문(반복적인가 · 정형화됐는가 · 검증이 쉬운가)을 몸에 익히는 것이 목적입니다.</p>
+  </div>
+  <div class="sorter">
+    <div class="chips" id="chips" role="group" aria-label="업무 선택"></div>
+    <div class="verdict" id="verdict" aria-live="polite">
+      <p class="note">위에서 업무를 하나 선택하세요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COST SIM ===== -->
+<section id="cost">
+  <div class="sec-head">
+    <p class="eyebrow">03 · 비용 계산기 — 기업 재무팀의 책상</p>
+    <h2>슬라이더를 움직여 '채용'과 '도입'의 1년 비용이 어디서 뒤집히는지 확인하세요</h2>
+    <p class="lead">모든 수치는 수업용 예시 가정값입니다. 실제 값은 기업·직무·국가에 따라 크게 다르므로, 결론보다 <b>어떤 항목이 계산에 들어가는지</b>에 주목하세요.</p>
+  </div>
+  <div class="sim">
+    <div class="ctrls">
+      <p class="grp">A. 신입 1명</p>
+      <label><span>연봉 (만원) <output id="o-sal">3,600</output></span><input type="range" id="sal" min="2400" max="6000" step="100" value="3600"></label>
+      <label><span>온보딩 기간 (개월) <output id="o-onb">6</output></span><input type="range" id="onb" min="1" max="12" step="1" value="6"></label>
+      <label><span>온보딩 중 생산성 (%) <output id="o-prod">50</output></span><input type="range" id="prod" min="10" max="100" step="5" value="50"></label>
+      <label><span>선배 코칭 시간 (주당 시간) <output id="o-coach">4</output></span><input type="range" id="coach" min="0" max="15" step="1" value="4"></label>
+      <p class="grp">B. AI 도구 (같은 업무 범위)</p>
+      <label><span>좌석당 월 구독+사용료 (만원) <output id="o-ai">40</output></span><input type="range" id="ai" min="5" max="300" step="5" value="40"></label>
+      <label><span>결과물 검수에 쓰는 시니어 시간 (주당 시간) <output id="o-rev">3</output></span><input type="range" id="rev" min="0" max="15" step="1" value="3"></label>
+    </div>
+    <div class="bars">
+      <div class="bar h"><div class="lbl"><span>신입 1년 총비용</span><b id="v-h">—</b></div><div class="trk"><i id="b-h"></i></div><div class="sub" id="s-h"></div></div>
+      <div class="bar a"><div class="lbl"><span>AI 1년 총비용</span><b id="v-a">—</b></div><div class="trk"><i id="b-a"></i></div><div class="sub" id="s-a"></div></div>
+      <div class="ratio" id="ratio">—</div>
+      <p class="note">가정: 4대보험·복리후생 20% 가산, 선배·시니어 시간은 시급 4만원으로 환산, 연 48주 근무. 이 계산에는 <b>신입이 2년차에 만들어내는 가치</b>와 <b>조직의 미래 시니어 공급</b>이 빠져 있습니다. 바로 그 누락이 토론 주제입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENARIOS ===== -->
+<section id="scenarios">
+  <div class="sec-head">
+    <p class="eyebrow">04 · 두 갈래 기업</p>
+    <h2>모든 기업이 입구를 닫는 것은 아니다 — 갈림길은 'AI를 얼마나 깊게 쓰는가'</h2>
+    <p class="lead">같은 AI를 도입해도 결론이 반대로 갈립니다. 2026년 고용주 조사(스트라다)에서 AI 활용으로 신입 채용을 늘리겠다는 응답이 줄이겠다는 응답보다 많았지만, 줄이겠다는 응답도 전년보다 늘었습니다.</p>
+  </div>
+  <div class="stat">
+    <div><b>46%</b><span>AI 활용으로 올해 신입 채용을 늘릴 것 (스트라다, 2026)</span></div>
+    <div><b>17%</b><span>AI 때문에 신입 채용을 줄일 것 — 전년 13%에서 증가</span></div>
+    <div><b>64%</b><span>미국 기업 중 신입 채용 중단·감축 응답 (별도 조사, 2026)</span></div>
+  </div>
+  <p class="note">※ 조사마다 표본과 질문이 달라 수치가 상충합니다. 어느 쪽이 맞는지가 아니라, '왜 갈리는가'가 수업의 질문입니다.</p>
+  <div class="seg" role="tablist" aria-label="기업 유형">
+    <button role="tab" aria-selected="true" data-scn="a">부분 도입 기업</button>
+    <button role="tab" aria-selected="false" data-scn="b">심층 도입 기업</button>
+  </div>
+  <div class="scn" id="scn-a" role="tabpanel">
+    <div class="card"><h3><span class="tag w">입구 축소</span>기업이 하는 일</h3>
+      <ul><li>반복·일상 업무 자동화에만 AI 사용</li><li>절감된 인건비를 성과로 보고</li><li>신입 공고 축소 또는 동결, 경력직 선호</li><li>"신입 뽑느니 AI 토큰을 더 쓰자"는 판단</li></ul></div>
+    <div class="card"><h3><span class="tag w">결과</span>신입에게 일어나는 일</h3>
+      <ul><li>수련용 업무가 사라져 첫 직장 진입이 어려움</li><li>채용 준비 비용(AI 역량검사 사교육 등)이 개인에게 전가</li><li>들어가도 성장 사다리의 첫 칸이 없음</li></ul></div>
+  </div>
+  <div class="scn" id="scn-b" role="tabpanel" hidden>
+    <div class="card"><h3><span class="tag g">입구 재설계</span>기업이 하는 일</h3>
+      <ul><li>AI로 업무가 오히려 복잡해졌다고 판단 (검수·조합·판단 업무 증가)</li><li>AI 문해력이 높은 젊은 인력을 적극 채용</li><li>신입을 'AI 에이전트를 지휘하는 역할'로 재정의</li><li>온보딩 자체를 AI 활용 훈련으로 전환</li></ul></div>
+    <div class="card"><h3><span class="tag g">결과</span>신입에게 일어나는 일</h3>
+      <ul><li>채용 수는 유지되거나 늘지만 요구 역량은 더 높음</li><li>입사 첫날부터 결과물 검증·책임이 주어짐</li><li>'AI보다 잘하는가'가 아니라 'AI와 함께 더 잘하는가'로 평가</li></ul></div>
+  </div>
+</section>
+
+<!-- ===== PREPARE ===== -->
+<section id="prepare">
+  <div class="sec-head">
+    <p class="eyebrow">05 · 학생의 대응</p>
+    <h2>기업의 계산식을 알면, 어디에 자신을 놓아야 하는지가 보인다</h2>
+    <p class="lead">앞의 다섯 단계를 거꾸로 읽으면 전략이 됩니다. 기업이 '사람이 유지' 쪽에 둔 것들이 곧 여러분의 자리입니다.</p>
+  </div>
+  <div class="ladder">
+    <div class="rung"><div class="k">단계 1 역이용</div><div><h3>AI가 흡수한 업무를 직접 AI로 해 본 결과물을 보여준다</h3><p>"엑셀 할 줄 압니다"가 아니라, AI로 보고서 초안·데이터 정리를 끝까지 해낸 결과물과 그 과정에서 무엇을 고쳤는지를 포트폴리오로 제시합니다. 매일 도구를 쓰는 손버릇이 곧 증거입니다.</p></div></div>
+    <div class="rung"><div class="k">단계 2 역이용</div><div><h3>온보딩 비용을 스스로 낮춘다</h3><p>기업의 계산식에서 가장 큰 항목은 '생산성에 도달하기까지의 시간'입니다. 현장 실습·프로젝트 경험은 이 숫자를 줄여 줍니다.</p></div></div>
+    <div class="rung"><div class="k g">단계 1의 '사람' 영역</div><div><h3>검증·판단·책임을 맡을 수 있음을 증명한다</h3><p>AI 결과물의 오류를 찾아낸 사례, 예외 상황을 처리한 경험, 사람을 상대한 경험이 핵심 역량이 됩니다. 기업이 끝까지 자동화하지 못한 것이 바로 이 영역입니다.</p></div></div>
+    <div class="rung"><div class="k g">단계 5 대응</div><div><h3>기본기를 버리지 않는다</h3><p>고용주 조사에서 신입 평가 1순위는 여전히 소통·협업·문제해결이었습니다. AI 문해력은 입장권이지, 그 자체가 경쟁력은 아닙니다.</p></div></div>
+    <div class="rung"><div class="k g">단계 4 대응</div><div><h3>공고 밖에서 입구를 만든다</h3><p>유령 공고와 AI 필터를 통과하는 데만 매달리기보다, 소규모 조직·프로젝트·추천을 통한 진입 경로를 함께 설계합니다. 심층 도입 기업일수록 결과물로 사람을 찾습니다.</p></div></div>
+  </div>
+</section>
+
+<!-- ===== DISCUSSION ===== -->
+<section id="discuss">
+  <div class="sec-head">
+    <p class="eyebrow">06 · 토론 질문</p>
+    <h2>수업에서 함께 다룰 질문</h2>
+  </div>
+  <ol class="q">
+    <li>비용 계산기에서 빠진 항목(2년차 이후의 가치, 미래 시니어 공급, 조직 문화)을 넣으면 결론이 어떻게 달라지는가? 기업은 왜 이 항목을 계산에 잘 넣지 않는가?</li>
+    <li>내 전공 분야의 신입 업무를 단계 1처럼 분해해 보자. '사람이 유지' 쪽에 남는 것은 무엇이고, 그것을 학교에서 어떻게 훈련할 수 있는가?</li>
+    <li>"신입을 키우지 않는 기업은 10년 뒤 시니어가 없다"는 말에 기업은 어떻게 반박할까? 그 반박은 타당한가?</li>
+    <li>AI 역량검사 사교육비가 개인에게 전가되는 현상은 누구의 책임인가 — 기업, 대학, 정부, 개인?</li>
+    <li>두 갈래 기업 중 내가 가고 싶은 곳은 어디이며, 그 기업이 나를 선택하게 만드는 증거는 무엇인가?</li>
+  </ol>
+</section>
+
+<!-- ===== GLOSSARY ===== -->
+<section id="glossary">
+  <div class="sec-head">
+    <p class="eyebrow">07 · 용어</p>
+    <h2>이 자료에 나온 용어</h2>
+  </div>
+  <div class="gl">
+    <div><b>입구 쇼크</b>AI가 신입 업무를 흡수하면서 노동시장 진입 관문이 좁아지거나 모양이 바뀌는 현상. '첫 직장 쇼크', '신입 실종'으로도 불림.</div>
+    <div><b>채용 절벽</b>대기업 정규직 신입 공고가 급감하는 현상. 2025년 하반기 이후 국내 데이터에서 뚜렷.</div>
+    <div><b>유령 공고</b>공고는 게시하되 실제 채용은 거의 진행하지 않는 공고. 미국에서는 '졸업생 패싱'이라는 표현도 등장.</div>
+    <div><b>AI 문해력</b>AI 도구를 업무에 적용하고 결과를 비판적으로 검증하는 능력. 채용의 '입장권'으로 기능.</div>
+    <div><b>비용 비대칭</b>신입 온보딩 비용과 AI 도입 비용의 격차. 기업이 채용보다 도입을 먼저 검토하게 하는 유인.</div>
+    <div><b>피라미드 → 다이아몬드</b>넓은 신입층이 받치던 조직이 중간·시니어 중심으로 재편되는 인력 구조 변화.</div>
+  </div>
+  <div class="src">
+    <b>참고한 보도·자료 (2026년 5월 기준)</b>
+    <ul>
+      <li><a href="https://v.daum.net/v/20260511000426657" target="_blank" rel="noopener">미 대졸청년을 덮친 'AI 쇼크' — 기업 64% 신입 채용 중단·감축, 유령 공고</a></li>
+      <li><a href="https://economist.co.kr/article/view/ecn202605090011" target="_blank" rel="noopener">이코노미스트 — 블룸버그 "초급 화이트칼라 채용 급감" 분석</a></li>
+      <li><a href="https://www.koreabizreview.com/articles/kbr-legacy-7489" target="_blank" rel="noopener">Korea Business Review — 2026 고용 쇼크·채용 절벽 데이터, 비용 비대칭</a></li>
+      <li><a href="https://v.daum.net/v/20260520151715697" target="_blank" rel="noopener">이데일리 — 스트라다 조사: AI로 신입 채용 확대 46%·축소 17%</a></li>
+      <li><a href="https://fnnews.com/news/202605200440134295" target="_blank" rel="noopener">파이낸셜뉴스 — AI 능숙한 신입 '귀하신 몸', AI 문해력</a></li>
+      <li><a href="https://enews.imbc.com/News/ViewAmp/521671" target="_blank" rel="noopener">MBC — "신입 뽑느니 AI 토큰을 더 줘라", AI 역량검사 사교육</a></li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+  /* stepper */
+  document.querySelectorAll('#steps .step').forEach(function(st){
+    var btn=st.querySelector('button.head'),body=st.querySelector('.body');
+    btn.addEventListener('click',function(){
+      var open=st.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      body.hidden=!open;
+    });
+  });
+
+  /* task sorter */
+  var tasks=[
+    {n:'회의록 작성',rep:3,std:3,ver:3,who:'AI',why:'녹취만 있으면 반복적이고 형식이 정해져 있으며, 참석자가 바로 검증할 수 있습니다.',left:'중요한 발언의 맥락 판단, 민감한 내용의 공유 범위 결정'},
+    {n:'주간 데이터 정리·그래프',rep:3,std:3,ver:2,who:'AI',why:'매주 같은 형식으로 반복되고 수식이 정해져 있습니다. 다만 원천 데이터 오류는 사람이 잡아야 합니다.',left:'이상치의 원인 해석, 그래프가 말하는 바를 결정권자에게 설명'},
+    {n:'선행 자료 리서치·요약',rep:2,std:2,ver:1,who:'AI 1차 + 사람 검증',why:'빠르게 초안은 나오지만 출처 오류·환각 가능성이 있어 검증 비용이 큽니다.',left:'출처 확인, 핵심 자료 선별, 우리 상황에 맞는 해석'},
+    {n:'학부모·고객 민원 응대',rep:2,std:1,ver:1,who:'사람',why:'유형은 반복되지만 상황마다 감정과 맥락이 달라 정형화가 어렵고, 응대 결과를 수치로 검증하기 어렵습니다.',left:'관계 유지, 예외 판단, 조직의 책임을 대신 지는 일'},
+    {n:'현장 안전 점검',rep:3,std:2,ver:1,who:'사람 (AI 보조)',why:'체크리스트는 정형화되지만 현장의 물리적 확인과 책임은 사람에게 남습니다.',left:'직접 확인, 위험 판단, 기록에 대한 법적 책임'},
+    {n:'행사 기획안 초안',rep:1,std:2,ver:1,who:'AI 초안 + 사람 결정',why:'형식은 있지만 매번 목적이 달라 반복성이 낮고, 좋은 기획인지 검증하려면 판단이 필요합니다.',left:'목적 설정, 이해관계자 조율, 예산과 우선순위 결정'},
+    {n:'코드 테스트·단순 버그 수정',rep:3,std:3,ver:3,who:'AI',why:'반복적이고 규칙이 명확하며 테스트가 통과하는지로 즉시 검증됩니다. 신입 개발자의 전통적 수련 업무였습니다.',left:'설계 판단, 왜 그 버그가 생겼는지에 대한 구조적 이해'},
+    {n:'신규 프로그램 참가자 면담',rep:2,std:1,ver:1,who:'사람',why:'사람을 직접 만나 신뢰를 쌓는 업무로, 정형화가 어렵고 결과를 즉시 수치화할 수 없습니다.',left:'라포 형성, 비언어적 신호 읽기, 개별 맞춤 판단'}
+  ];
+  var chips=document.getElementById('chips'),verdict=document.getElementById('verdict');
+  var lv=['낮음','중간','높음'];
+  tasks.forEach(function(t,i){
+    var b=document.createElement('button');b.type='button';b.textContent=t.n;b.setAttribute('aria-pressed','false');b.id='chip-'+i;
+    b.addEventListener('click',function(){
+      chips.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var score=t.rep+t.std+t.ver, pct=Math.round(score/9*100);
+      var cls=t.who==='AI'?'w':(t.who==='사람'?'g':'');
+      verdict.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3>'+t.n+'</h3><span class="tag '+cls+'">판정: '+t.who+'</span></div>'+
+        '<div><div class="note" style="display:flex;justify-content:space-between"><span>AI 흡수 가능성</span><span>'+pct+'%</span></div><div class="meter"><i style="width:'+pct+'%"></i></div></div>'+
+        '<dl><dt>반복적인가</dt><dd>'+lv[t.rep-1]+'</dd><dt>정형화됐는가</dt><dd>'+lv[t.std-1]+'</dd><dt>검증이 쉬운가</dt><dd>'+lv[t.ver-1]+'</dd></dl>'+
+        '<p style="font-size:.93rem">'+t.why+'</p><p class="note"><b>사람에게 남는 부분:</b> '+t.left+'</p>';
+    });
+    chips.appendChild(b);
+  });
+
+  /* cost sim */
+  var ids=['sal','onb','prod','coach','ai','rev'],el={};
+  ids.forEach(function(id){el[id]=document.getElementById(id)});
+  var fmt=function(n){return Math.round(n).toLocaleString('ko-KR')};
+  function calc(){
+    var sal=+el.sal.value,onb=+el.onb.value,prod=+el.prod.value,coach=+el.coach.value,ai=+el.ai.value,rev=+el.rev.value;
+    document.getElementById('o-sal').textContent=fmt(sal);
+    document.getElementById('o-onb').textContent=onb;
+    document.getElementById('o-prod').textContent=prod;
+    document.getElementById('o-coach').textContent=coach;
+    document.getElementById('o-ai').textContent=ai;
+    document.getElementById('o-rev').textContent=rev;
+    var HR=4; /* 만원/시간 */
+    var base=sal*1.2;
+    var onbLoss=sal/12*onb*(1-prod/100);
+    var coachCost=coach*48*HR;
+    var human=base+onbLoss+coachCost;
+    var aiSub=ai*12;
+    var revCost=rev*48*HR;
+    var aiTot=aiSub+revCost;
+    var mx=Math.max(human,aiTot)||1;
+    document.getElementById('v-h').textContent=fmt(human)+'만원';
+    document.getElementById('v-a').textContent=fmt(aiTot)+'만원';
+    document.getElementById('b-h').style.width=(human/mx*100)+'%';
+    document.getElementById('b-a').style.width=(aiTot/mx*100)+'%';
+    document.getElementById('s-h').textContent='급여·복리후생 '+fmt(base)+' + 온보딩 손실 '+fmt(onbLoss)+' + 코칭 '+fmt(coachCost);
+    document.getElementById('s-a').textContent='구독·사용료 '+fmt(aiSub)+' + 시니어 검수 '+fmt(revCost);
+    var r=document.getElementById('ratio');
+    if(aiTot<human){r.innerHTML='AI 비용이 신입의 '+Math.round(aiTot/human*100)+'% 수준<small>재무팀 시각에서는 "도입 먼저 검토" 신호. 단, 이 숫자는 신입이 만들어낼 미래 가치를 포함하지 않습니다.</small>';}
+    else{r.innerHTML='신입이 AI보다 '+Math.round((1-human/aiTot)*100)+'% 저렴<small>검수 시간이 커지거나 사용료가 높으면 역전됩니다. 심층 도입 기업이 사람을 뽑는 이유 중 하나입니다.</small>';}
+  }
+  ids.forEach(function(id){el[id].addEventListener('input',calc)});
+  calc();
+
+  /* scenarios */
+  document.querySelectorAll('.seg [role=tab]').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.seg [role=tab]').forEach(function(x){x.setAttribute('aria-selected','false')});
+      t.setAttribute('aria-selected','true');
+      document.getElementById('scn-a').hidden=t.dataset.scn!=='a';
+      document.getElementById('scn-b').hidden=t.dataset.scn!=='b';
+    });
+  });
+
+  /* toc highlight + hash */
+  var links=document.querySelectorAll('nav.toc a');
+  var secs=['intro','process','tasks','cost','scenarios','prepare','discuss','glossary'].map(function(i){return document.getElementById(i)});
+  function hl(){
+    var y=window.scrollY+120,cur=secs[0];
+    secs.forEach(function(s){if(s.offsetTop<=y)cur=s});
+    links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur.id)});
+  }
+  window.addEventListener('scroll',hl,{passive:true});hl();
+  try{var h=(location.hash||'').replace('#','');if(h&&document.getElementById(h))document.getElementById(h).scrollIntoView();}catch(e){}
+})();
+</script>
+
+</body></html>
