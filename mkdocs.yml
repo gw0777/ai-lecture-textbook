@@ -1,9 +1,11 @@
 site_name: 손으로 배우는 AI
 site_description: 인공지능 특강 교재 (대학·CEO 과정) — 직접 눌러보고, 만들고, 내 일에 적용하는 AI 입문서
 docs_dir: docs
-# GitHub에 올린 뒤 아래 두 줄을 내 저장소 주소로 바꾸세요.
-# site_url: https://<GitHub-아이디>.github.io/ai-lecture-textbook/
-# repo_url: https://github.com/<GitHub-아이디>/ai-lecture-textbook
+# 저장소를 옮기거나 이름을 바꾸면 아래 두 줄도 함께 바꾸세요.
+site_url: https://gw0777.github.io/ai-lecture-textbook/
+repo_url: https://github.com/gw0777/ai-lecture-textbook
+repo_name: gw0777/ai-lecture-textbook
+edit_uri: edit/main/docs/
 
 theme:
   name: material
