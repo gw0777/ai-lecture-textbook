@@ -134,6 +134,7 @@ function Open-Tools {
         Say '  0. 돌아가기'
         Say ''
         $sel = Read-Host '번호를 입력하고 Enter'
+        if ($null -eq $sel) { return }   # 입력이 끝났으면(창 닫힘 등) 반복하지 않고 끝냅니다
         switch ($sel) {
             '1' { Start-Process (Join-Path $examples 'entry-shock-anatomy.html') }
             '2' { Start-Process (Join-Path $examples 'prompt-continuity-lab.html') }
@@ -174,7 +175,7 @@ function Publish-GitHub {
         Say ''
         Say '[연결] GitHub 저장소 주소를 붙여 넣으세요.' Cyan
         Say '       예: https://github.com/내아이디/ai-lecture-textbook.git'
-        $url = (Read-Host '주소').Trim()
+        $url = "$(Read-Host '주소')".Trim()
         if (-not $url) { Say '[취소] 아무것도 올리지 않았습니다.' Yellow; return }
         git remote add origin $url
         if ($LASTEXITCODE -ne 0) { Say '[오류] 저장소를 연결하지 못했습니다.' Red; return }
@@ -231,6 +232,7 @@ function Show-Menu {
         Say '  처음 1·2·4번을 고르면 필요한 도구를 자동으로 설치합니다. (1~3분)' DarkGray
         Say ''
         $sel = Read-Host '번호를 입력하고 Enter'
+        if ($null -eq $sel) { return }   # 입력이 끝났으면(창 닫힘 등) 반복하지 않고 끝냅니다
         switch ($sel) {
             '1' { Start-Preview; Wait-Enter 'Enter 키를 누르면 메뉴로 돌아갑니다' }
             '2' { New-OfflineBook; Wait-Enter 'Enter 키를 누르면 메뉴로 돌아갑니다' }
