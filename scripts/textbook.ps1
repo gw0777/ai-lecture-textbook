@@ -211,8 +211,12 @@ function Publish-GitHub {
     }
     Say ''
     Say '[완료] 올렸습니다.' Green
-    Say '       처음 올렸다면 GitHub 저장소의 Settings - Pages - Source 를 "GitHub Actions" 로 바꿔 주세요.'
-    Say '       몇 분 뒤 https://내아이디.github.io/ai-lecture-textbook/ 에서 교재가 열립니다.'
+    Say '       처음 올렸다면 교재 웹사이트를 한 번만 켜 주세요:'
+    Say '       1) GitHub 저장소 Settings - Pages - Source 를 "GitHub Actions" 로 바꿉니다.'
+    Say '       2) Actions 탭 - "교재 사이트 게시" - Run workflow 를 누릅니다.'
+    Say '          (Pages를 켜기 전에 올렸다면 첫 게시는 실패로 표시됩니다. 다시 실행하면 됩니다)'
+    $site = ($origin -replace '^https://github\.com/([^/]+)/([^/.]+)(\.git)?/?$', 'https://$1.github.io/$2/')
+    Say "       몇 분 뒤 $site 에서 교재가 열립니다."
 }
 
 function Show-Menu {
